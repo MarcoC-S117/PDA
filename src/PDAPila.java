@@ -1,21 +1,27 @@
-import java.util.Stack;
-import java.util.HashSet;
-import java.util.Set;
 
 public class PDAPila {
-    private Stack<Character> stack;
+    private char[] stack;
+    private int size;
+    private int capacity;
 
-    public PDAPila() {
-        stack = new Stack<>();
+    public PDAPila(int FirtSize) {
+        capacity = FirtSize;  // Capacidad inicial de la pila (ajusta según tus necesidades).
+        stack = new char[capacity];
+        push("Z0");
     }
 
-    public void push(char symbol) {
-        stack.push(symbol);
+    public void push(String symbol) {
+        if (size < capacity && Alphabet(symbol)!='\0') {
+            stack[size++] = Alphabet(symbol);
+        } else {
+            // Aquí puedes implementar manejo de errores o redimensionar la pila si es necesario.
+            throw new RuntimeException("La pila está llena o el simbolo es invalido. No se puede hacer push.");
+        }
     }
 
     public char pop() {
         if (!empty()) {
-            return stack.pop();
+            return stack[--size];
         } else {
             throw new RuntimeException("La pila está vacía. No se puede hacer pop.");
         }
@@ -23,23 +29,40 @@ public class PDAPila {
 
     public char top() {
         if (!empty()) {
-            return stack.peek();
+            return stack[size - 1];
         } else {
             throw new RuntimeException("La pila está vacía. No hay elemento en la cima.");
         }
     }
 
     public boolean empty() {
-        return stack.isEmpty();
+        return size == 0;
     }
 
     public void init() {
-        stack.clear();
+        size = 0;
     }
 
-    public Set<Character> alphabet() {
-        // Devuelve el alfabeto de la PDA, que podría ser un conjunto de símbolos permitidos.
-        // Esto debe ser personalizado para tu aplicación específica.
-        return new HashSet<>(stack);
+    public String getAlphabet() {
+        // Devuelve el alfabeto de la PDA como una cadena de caracteres.
+        return "S, 0, 1";
+    }
+    public char Alphabet(String Sym){
+        char Symbol = ' ';
+        switch (Sym){
+            case "Z0":
+                Symbol = 'S';
+                break;
+            case "0":
+                Symbol = '0';
+                break;
+            case "1":
+                Symbol = '1';
+                break;
+            default:
+                Symbol = '\0';
+                break;
+        }
+        return Symbol;
     }
 }
