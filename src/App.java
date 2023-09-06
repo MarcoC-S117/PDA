@@ -15,9 +15,6 @@ public class App {
         } else {
             System.out.println("La cadena no puede estar vacía");
         }
-        
-        
-         
         scan.close();     
     }
 }
