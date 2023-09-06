@@ -18,14 +18,16 @@ public class PDA {
                 case 0:
                     if(i<Mitad_Cadena){                        
                         state=0;
-                        pila.push(cadena.charAt(i));       
+                        pila.push(cadena.charAt(i));
+                        System.out.println("(q0, "+ cadena.charAt(i) + (", ") + pila.top() + (")"));    
                     }else {state = 1; i--;}
                 break;
-                case 1:                    
+                case 1:              
+                    System.out.println("(q1, "+ cadena.charAt(i) + (", ") + pila.top() + (")"));          
                     if(pila.empty()){
                         System.out.println("Es palindromo");
                     }
-                    else if(i!=cadena.length() && pila.top()== cadena.charAt(i)){
+                    else if(i!=cadena.length() && pila.top()== pila.Alphabet(cadena.charAt(i))){
                         state=1;                        
                         pila.pop();
                     } else if (pila.top()!= cadena.charAt(i)){

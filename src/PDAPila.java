@@ -4,17 +4,18 @@ public class PDAPila {
     private int size;
     private int capacity;
 
+    // Constructor de la clase PDA.
     public PDAPila(int FirtSize) {
         capacity = FirtSize;  // Capacidad inicial de la pila (ajusta según tus necesidades).
         stack = new char[capacity];
         push('Z');
     }
 
+    // Métodos de la clase PDA.
     public void push(char symbol) {
         if (size < capacity && Alphabet(symbol)!='\0') {
             stack[size++] = Alphabet(symbol);
         } else {
-            // Aquí puedes implementar manejo de errores o redimensionar la pila si es necesario.
             throw new RuntimeException("La pila está llena o el simbolo es invalido. No se puede hacer push.");
         }
     }
@@ -43,21 +44,23 @@ public class PDAPila {
         size = 0;
     }
 
+    // obtener alfabeto de la pila
     public String getAlphabet() {
         // Devuelve el alfabeto de la PDA como una cadena de caracteres.
         return "S, 0, 1";
     }
     
+    // Alfabeto de la pila
     public char Alphabet(char Sym){
         char Symbol = ' ';
         switch (Sym){
             case 'Z':
                 Symbol = 'S';
                 break;
-            case '0':
+            case 'A':
                 Symbol = '0';
                 break;
-            case '1':
+            case 'B':
                 Symbol = '1';
                 break;
             default:
