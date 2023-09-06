@@ -7,10 +7,10 @@ public class PDAPila {
     public PDAPila(int FirtSize) {
         capacity = FirtSize;  // Capacidad inicial de la pila (ajusta según tus necesidades).
         stack = new char[capacity];
-        push("Z0");
+        push('Z');
     }
 
-    public void push(String symbol) {
+    public void push(char symbol) {
         if (size < capacity && Alphabet(symbol)!='\0') {
             stack[size++] = Alphabet(symbol);
         } else {
@@ -39,7 +39,7 @@ public class PDAPila {
         return size == 0;
     }
 
-    public void init() {
+    public void restart() {
         size = 0;
     }
 
@@ -47,16 +47,17 @@ public class PDAPila {
         // Devuelve el alfabeto de la PDA como una cadena de caracteres.
         return "S, 0, 1";
     }
-    public char Alphabet(String Sym){
+    
+    public char Alphabet(char Sym){
         char Symbol = ' ';
         switch (Sym){
-            case "Z0":
+            case 'Z':
                 Symbol = 'S';
                 break;
-            case "0":
+            case '0':
                 Symbol = '0';
                 break;
-            case "1":
+            case '1':
                 Symbol = '1';
                 break;
             default:
