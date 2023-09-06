@@ -12,9 +12,13 @@ public class PDA {
     }
 
     boolean Transitions(){
-        boolean valid = false;        
-        for(int i=0; i<cadena.length();i++){        
+        
+        boolean valid = false;     
+
+        for(int i=0; i<cadena.length();i++){  
+
             switch (state){
+
                 case 0:
                     if(i<Mitad_Cadena){                        
                         state=0;
@@ -22,6 +26,7 @@ public class PDA {
                         System.out.println("(q0, "+ cadena.charAt(i) + (", ") + pila.top() + (")"));    
                     }else {state = 1; i--;}
                 break;
+
                 case 1:              
                     System.out.println("(q1, "+ cadena.charAt(i) + (", ") + pila.top() + (")"));          
                     if(pila.empty()){
@@ -36,8 +41,10 @@ public class PDA {
                     } 
                     valid=true;
                     break;
-                    }                   
+                    }   
+
             }         
         return valid;
+
     }
 }
